@@ -1,8 +1,11 @@
-import {questionContext} from "../store/host.store.tsx";
-import {useContext} from "react";
+import React from "react";
 
-const QuestionCheckbox = () => {
-    const {setGuessQuestionToggle, guessQuestionToggle} = useContext(questionContext);
+interface IProps {
+    guessQuestionToggle: boolean;
+    setGuessQuestionToggle: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+const QuestionCheckbox: React.FC<IProps> = ({guessQuestionToggle, setGuessQuestionToggle}) => {
     const onChangeGuessQuestion = (): void => {
         setGuessQuestionToggle(!guessQuestionToggle);
     }

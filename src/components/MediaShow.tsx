@@ -1,11 +1,15 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {AiFillDelete, AiFillPicture} from "react-icons/ai";
 import {BsSoundwave} from "react-icons/bs";
-import {questionContext} from "../store/host.store.tsx";
 
-const MediaShow = () => {
+interface IProps {
+    setImage: React.Dispatch<React.SetStateAction<string | null | undefined>>
+    setAudio: React.Dispatch<React.SetStateAction<string | null | undefined>>
+    image: string | null | undefined;
+    audio: string | null | undefined;
+}
 
-    const {setAudio, audio, image, setImage} = useContext(questionContext);
+const MediaShow: React.FC<IProps> = ({image, audio, setImage, setAudio}) => {
     const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
         if (!event.target.files) return;
         setImage(URL.createObjectURL(event.target.files[0]));
