@@ -1,86 +1,45 @@
 import QuestionCheckbox from "./QuestionCheckbox.tsx";
-import React, {useState} from "react";
-import {IState} from "../pages/host.tsx";
+import React from "react";
 
 
 interface IProps {
-    setQuestionContainer: React.Dispatch<React.SetStateAction<IState["questions"]>>;
-    questionContainer: IState["questions"];
     setGuessQuestionToggle: React.Dispatch<React.SetStateAction<boolean>>
     guessQuestionToggle: boolean;
+    setQuestion: React.Dispatch<React.SetStateAction<string | number>>;
+    setGuessAnswer: React.Dispatch<React.SetStateAction<string | number>>
+    setAnswer_1: React.Dispatch<React.SetStateAction<string | number>>
+    setAnswer_2: React.Dispatch<React.SetStateAction<string | number>>
+    setAnswer_3: React.Dispatch<React.SetStateAction<string | number>>
+    setAnswer_4: React.Dispatch<React.SetStateAction<string | number>>
+    answer_1: string | number;
+    answer_2: string | number;
+    answer_3: string | number;
+    answer_4: string | number;
+    guessAnswer: string | number;
+    question: string | number;
 }
 
 const QuestionMaker: React.FC<IProps> = ({
                                              setGuessQuestionToggle,
                                              guessQuestionToggle,
-                                             setQuestionContainer,
-                                             questionContainer
+                                             setQuestion,
+                                             setGuessAnswer,
+                                             guessAnswer,
+                                             setAnswer_1,
+                                             answer_1,
+                                             setAnswer_2,
+                                             answer_2,
+                                             setAnswer_3,
+                                             answer_3,
+                                             setAnswer_4,
+                                             answer_4,
+                                             question,
                                          }) => {
-    const [question, setQuestion] = useState<string | number>("");
-    const [answer_1, setAnswer_1] = useState<string | number>("");
-    const [answer_2, setAnswer_2] = useState<string | number>("");
-    const [answer_3, setAnswer_3] = useState<string | number>("");
-    const [answer_4, setAnswer_4] = useState<string | number>("");
-    const [guessAnswer, setGuessAnswer] = useState<string | number>("");
 
-    const resetInputs = () => {
-        setQuestion("");
-        setGuessAnswer("");
-        setAnswer_1("");
-        setAnswer_2("");
-        setAnswer_3("");
-        setAnswer_4("");
-    }
-
-    const createQuestion = (): void => {
-        let object: object;
-        if (question === "" || questionContainer.length === 10) return;
-        if (guessQuestionToggle) {
-            object = {
-                question: question,
-                guessAnswer: guessAnswer,
-            }
-        } else {
-            object = {
-                question: question,
-                answer_1: answer_1,
-                answer_2: answer_2,
-                answer_3: answer_3,
-                answer_4: answer_4
-            }
-        }
-        setQuestionContainer([...questionContainer, object]);
-        resetInputs();
-    }
-
-    const renderQuestions = () => {
-        return questionContainer.map((question, index) => {
-            if (guessQuestionToggle) {
-                return (
-                    <div className={"bg-white rounded"} key={index}>
-                        <p>Question: {question.question}</p>
-                        <p>GuessAnswer: {question.guessAnswer}</p>
-                    </div>
-                )
-            } else {
-                return (
-                    <div className={"bg-white rounded flex flex-col justify-center items-start"} key={index}>
-                        <p>Question: {question.question}</p>
-                        <p>Answer: {question.answer_1}</p>
-                        <p>Answer: {question.answer_2}</p>
-                        <p>Answer: {question.answer_3}</p>
-                        <p>Answer: {question.answer_4}</p>
-                    </div>
-                )
-            }
-        })
-    }
     return (
         <div className="flex flex-col mt-1 gap-2 justify-center items-center">
             <QuestionCheckbox guessQuestionToggle={guessQuestionToggle}
                               setGuessQuestionToggle={setGuessQuestionToggle}/>
-            <button onClick={createQuestion}>CREATE</button>
-            {renderQuestions()}
             <input
                 name="question"
                 type="text"
