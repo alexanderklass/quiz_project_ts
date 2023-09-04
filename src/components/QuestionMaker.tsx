@@ -1,50 +1,39 @@
 import QuestionCheckbox from "./QuestionCheckbox.tsx";
-import React from "react";
+import {useEffect, useRef} from "react";
+import {questionStore} from "../store/questions.store.tsx";
 
+const QuestionMaker = () => {
+    const {
+        guessQuestionToggle,
+        question,
+        setQuestion,
+        guessAnswer,
+        setGuessAnswer,
+        answer_1,
+        setAnswer_1,
+        answer_2,
+        setAnswer_2,
+        answer_3,
+        setAnswer_3,
+        answer_4,
+        setAnswer_4,
+    } = questionStore();
+    const questionRef = useRef<HTMLInputElement | null>(null)
 
-interface IProps {
-    setGuessQuestionToggle: React.Dispatch<React.SetStateAction<boolean>>
-    guessQuestionToggle: boolean;
-    setQuestion: React.Dispatch<React.SetStateAction<string | number>>;
-    setGuessAnswer: React.Dispatch<React.SetStateAction<string | number>>
-    setAnswer_1: React.Dispatch<React.SetStateAction<string | number>>
-    setAnswer_2: React.Dispatch<React.SetStateAction<string | number>>
-    setAnswer_3: React.Dispatch<React.SetStateAction<string | number>>
-    setAnswer_4: React.Dispatch<React.SetStateAction<string | number>>
-    answer_1: string | number;
-    answer_2: string | number;
-    answer_3: string | number;
-    answer_4: string | number;
-    guessAnswer: string | number;
-    question: string | number;
-}
-
-const QuestionMaker: React.FC<IProps> = ({
-                                             setGuessQuestionToggle,
-                                             guessQuestionToggle,
-                                             setQuestion,
-                                             setGuessAnswer,
-                                             guessAnswer,
-                                             setAnswer_1,
-                                             answer_1,
-                                             setAnswer_2,
-                                             answer_2,
-                                             setAnswer_3,
-                                             answer_3,
-                                             setAnswer_4,
-                                             answer_4,
-                                             question,
-                                         }) => {
+    useEffect(() => {
+        questionRef.current?.focus();
+    }, [])
 
     return (
         <div className="flex flex-col mt-1 gap-2 justify-center items-center">
-            <QuestionCheckbox guessQuestionToggle={guessQuestionToggle}
-                              setGuessQuestionToggle={setGuessQuestionToggle}/>
+            <QuestionCheckbox/>
             <input
+                ref={questionRef}
                 name="question"
                 type="text"
                 className="rounded bg-purple-300 text-center h-[50px] w-[420px] focus:scale-105 transition outline-0"
                 placeholder="QUESTION"
+                autoComplete={"off"}
                 value={question}
                 onChange={e => {
                     setQuestion(e.target.value)
@@ -58,6 +47,7 @@ const QuestionMaker: React.FC<IProps> = ({
                         setGuessAnswer(e.target.value)
                     }}
                     type="text"
+                    autoComplete={"off"}
                     className="rounded p-3 text-center w-[420px] focus:scale-105 transition outline-0"
                     placeholder="ANSWER_OPTION"
                 />
@@ -70,6 +60,7 @@ const QuestionMaker: React.FC<IProps> = ({
                             setAnswer_1(e.target.value)
                         }}
                         type="text"
+                        autoComplete={"off"}
                         className="rounded p-3 text-center focus:scale-105 transition outline-0"
                         placeholder="ANSWER_OPTION"
                     />
@@ -80,6 +71,7 @@ const QuestionMaker: React.FC<IProps> = ({
                             setAnswer_2(e.target.value)
                         }}
                         type="text"
+                        autoComplete={"off"}
                         className="rounded p-3 text-center focus:scale-105 transition outline-0"
                         placeholder="ANSWER_OPTION"
                     />
@@ -92,6 +84,7 @@ const QuestionMaker: React.FC<IProps> = ({
                             setAnswer_3(e.target.value)
                         }}
                         type="text"
+                        autoComplete={"off"}
                         className="rounded p-3 text-center focus:scale-105 transition outline-0"
                         placeholder="ANSWER_OPTION"
                     />
@@ -102,6 +95,7 @@ const QuestionMaker: React.FC<IProps> = ({
                             setAnswer_4(e.target.value)
                         }}
                         type="text"
+                        autoComplete={"off"}
                         className="rounded p-3 text-center focus:scale-105 transition outline-0"
                         placeholder="ANSWER_OPTION"
                     />

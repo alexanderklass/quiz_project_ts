@@ -1,32 +1,28 @@
 import Logo from "../assets//logo.png";
-import {useState} from "react";
 import {Link} from "react-router-dom";
 import MediaShow from "../components/MediaShow.tsx";
 import CategoryList from "../components/CategoryList.tsx";
 import QuestionMaker from "../components/QuestionMaker.tsx";
-
-export interface IState {
-    questions: {
-        question: string;
-        guessAnswer?: string | undefined;
-        answer_1: string;
-        answer_2: string;
-        answer_3: string;
-        answer_4: string;
-    }[];
-}
+import {questionStore} from "../store/questions.store.tsx";
 
 const Host = () => {
-    const [questionContainer, setQuestionContainer] = useState<IState["questions"]>([]);
-    const [guessQuestionToggle, setGuessQuestionToggle] = useState<boolean>(false);
-    const [image, setImage] = useState<string | null>();
-    const [audio, setAudio] = useState<string | null>();
-    const [question, setQuestion] = useState<string | number>("");
-    const [answer_1, setAnswer_1] = useState<string | number>("");
-    const [answer_2, setAnswer_2] = useState<string | number>("");
-    const [answer_3, setAnswer_3] = useState<string | number>("");
-    const [answer_4, setAnswer_4] = useState<string | number>("");
-    const [guessAnswer, setGuessAnswer] = useState<string | number>("");
+    const {
+        questionContainer,
+        guessQuestionToggle,
+        question,
+        answer_1,
+        answer_2,
+        answer_3,
+        answer_4,
+        guessAnswer,
+        setQuestionContainer,
+        setQuestion,
+        setAnswer_1,
+        setAnswer_2,
+        setAnswer_3,
+        setAnswer_4,
+        setGuessAnswer,
+    } = questionStore();
 
     const resetInputs = (): void => {
         setQuestion("");
@@ -58,43 +54,14 @@ const Host = () => {
         resetInputs();
     };
 
-    const renderQuestions = () => {
-        return questionContainer.map((question, index) => {
-            return (
-                <div className={"m-1 p-1 bg-white rounded flex flex-col justify-center items-start"} key={index}>
-                    <p>Question: {question.question}</p>
-                    <p>Answer_1: {question.answer_1}</p>
-                    <p>Answer_2: {question.answer_2}</p>
-                    <p>Answer_3: {question.answer_3}</p>
-                    <p>Answer_4: {question.answer_4}</p>
-                </div>
-            )
-        })
-    };
-
     return <div className="justify-center items-center flex flex-col h-screen">
         <div className="relative bg-[#2A2F4F] rounded-lg">
             <div className="flex-row flex justify-center w-[1400px] h-[800px] items-center">
                 <CategoryList/>
                 <section className="flex flex-col w-full justify-center items-center gap-2">
-                    <MediaShow setImage={setImage} image={image} setAudio={setAudio} audio={audio}/>
+                    <MediaShow/>
                     <div className={"flex flex-row"}>
-                        <QuestionMaker questionContainer={questionContainer}
-                                       setQuestionContainer={setQuestionContainer}
-                                       setGuessQuestionToggle={setGuessQuestionToggle}
-                                       guessQuestionToggle={guessQuestionToggle}
-                                       question={question}
-                                       setQuestion={setQuestion}
-                                       setAnswer_1={setAnswer_1}
-                                       setAnswer_2={setAnswer_2}
-                                       setAnswer_3={setAnswer_3}
-                                       setAnswer_4={setAnswer_4}
-                                       guessAnswer={guessAnswer}
-                                       setGuessAnswer={setGuessAnswer}
-                                       answer_1={answer_1}
-                                       answer_2={answer_2}
-                                       answer_3={answer_3}
-                                       answer_4={answer_4}/>
+                        <QuestionMaker/>
                     </div>
                 </section>
 
@@ -136,7 +103,6 @@ const Host = () => {
                     </div>
                 </div>
             </section>
-            {renderQuestions()}
         </div>
     </div>;
 };

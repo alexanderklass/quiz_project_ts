@@ -1,11 +1,9 @@
-import React from "react";
+import {questionStore} from "../store/questions.store.tsx";
 
-interface IProps {
-    guessQuestionToggle: boolean;
-    setGuessQuestionToggle: React.Dispatch<React.SetStateAction<boolean>>
-}
 
-const QuestionCheckbox: React.FC<IProps> = ({guessQuestionToggle, setGuessQuestionToggle}) => {
+const QuestionCheckbox = () => {
+
+    const {setGuessQuestionToggle, guessQuestionToggle} = questionStore();
     const onChangeGuessQuestion = (): void => {
         setGuessQuestionToggle(!guessQuestionToggle);
     }
