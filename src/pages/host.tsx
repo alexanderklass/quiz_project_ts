@@ -15,6 +15,7 @@ const Host = () => {
         answer_3,
         answer_4,
         guessAnswer,
+        correctAnswer_1,
         setQuestionContainer,
         setQuestion,
         setAnswer_1,
@@ -41,7 +42,7 @@ const Host = () => {
             guessAnswer: guessAnswer,
             answer_1: {
                 answer: answer_1,
-                correct: false
+                correct: correctAnswer_1
             },
             answer_2: {
                 answer: answer_2,
@@ -57,6 +58,7 @@ const Host = () => {
             }
         }
         setQuestionContainer([...questionContainer, object]);
+        console.log(questionContainer);
         resetInputs();
     };
 

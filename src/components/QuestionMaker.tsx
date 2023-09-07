@@ -17,12 +17,24 @@ const QuestionMaker = () => {
         setAnswer_3,
         answer_4,
         setAnswer_4,
+        setCorrectAnswer_1,
+        setCorrectAnswer_2,
+        setCorrectAnswer_3,
+        setCorrectAnswer_4,
+        correctAnswer_1,
+        correctAnswer_2,
+        correctAnswer_3,
+        correctAnswer_4
     } = questionStore();
     const questionRef = useRef<HTMLInputElement | null>(null)
 
     useEffect(() => {
         questionRef.current?.focus();
     }, [])
+
+    const handleToggleCorrectQuestion = () => {
+        setCorrectAnswer_1(!correctAnswer_1);
+    }
 
     return (
         <div className="flex flex-col mt-1 gap-2 justify-center items-center">
@@ -53,7 +65,7 @@ const QuestionMaker = () => {
                 />
             ) : <>
                 <div className="flex items-center gap-2 justify-center">
-                    <input type={"checkbox"}/>
+                    <input type={"checkbox"} onChange={handleToggleCorrectQuestion}/>
                     <input
                         name={"answer_one"}
                         value={answer_1}

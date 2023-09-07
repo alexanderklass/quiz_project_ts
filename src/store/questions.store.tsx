@@ -10,15 +10,15 @@ export interface IQuestions {
     answer_2: string | number;
     answer_3: string | number;
     answer_4: string | number;
-    correct_answer_1: boolean;
-    correct_answer_2: boolean;
-    correct_answer_3: boolean;
-    correct_answer_4: boolean;
+    correctAnswer_1: boolean;
+    correctAnswer_2: boolean;
+    correctAnswer_3: boolean;
+    correctAnswer_4: boolean;
     guessAnswer: string | number;
-    setCorrect_answer_1: (correct_answer_1: boolean) => void;
-    setCorrect_answer_2: (correct_answer_2: boolean) => void;
-    setCorrect_answer_3: (correct_answer_3: boolean) => void;
-    setCorrect_answer_4: (correct_answer_4: boolean) => void;
+    setCorrectAnswer_1: (correct_answer_1: boolean) => void;
+    setCorrectAnswer_2: (correct_answer_2: boolean) => void;
+    setCorrectAnswer_3: (correct_answer_3: boolean) => void;
+    setCorrectAnswer_4: (correct_answer_4: boolean) => void;
     setQuestionContainer: (questionContainer: Array<object>) => void;
     setGuessQuestionToggle: (guessQuestionToggle: boolean) => void;
     setImage: (image: string | null) => void;
@@ -42,14 +42,14 @@ export const questionStore = create<IQuestions>((set) => ({
     answer_3: "",
     answer_4: "",
     guessAnswer: "",
-    correct_answer_1: false,
-    correct_answer_2: false,
-    correct_answer_3: false,
-    correct_answer_4: false,
-    setCorrect_answer_1: (answer: boolean) => set({correct_answer_1: answer}),
-    setCorrect_answer_2: (answer: boolean) => set({correct_answer_2: answer}),
-    setCorrect_answer_3: (answer: boolean) => set({correct_answer_3: answer}),
-    setCorrect_answer_4: (answer: boolean) => set({correct_answer_4: answer}),
+    correctAnswer_1: false,
+    correctAnswer_2: false,
+    correctAnswer_3: false,
+    correctAnswer_4: false,
+    setCorrectAnswer_1: (answer: boolean) => set({correctAnswer_1: answer}),
+    setCorrectAnswer_2: (answer: boolean) => set({correctAnswer_2: answer}),
+    setCorrectAnswer_3: (answer: boolean) => set({correctAnswer_3: answer}),
+    setCorrectAnswer_4: (answer: boolean) => set({correctAnswer_4: answer}),
     setQuestionContainer: (questionContainer: Array<object>) => set({questionContainer: questionContainer}),
     setGuessQuestionToggle: (toggle: boolean) => set({guessQuestionToggle: toggle}),
     setImage: (img: string | null) => set({image: img}),
