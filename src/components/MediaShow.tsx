@@ -20,8 +20,7 @@ const MediaShow = () => {
         setAudio(null);
     };
     return (
-        <div
-            className="border-2 relative flex justify-center items-center border-dashed rounded mb-2 w-[500px] h-[300px] bg-[#917FB3]">
+        <div className="border-2 relative flex justify-center items-center border-dashed rounded mb-2 w-[500px] h-[300px] bg-[#917FB3]">
             <div className="flex flex-row items-center justify-around w-full">
                 {!image && !audio && <>
                     <label

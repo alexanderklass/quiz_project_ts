@@ -8,10 +8,14 @@ function Start() {
                 <img src={logo} className="mb-4" alt={"logo"}/>
                 <input
                     type="text"
-                    className="rounded-lg text-center  p-2 placeholder:text-center outline-0 focus:scale-105 transition"
+                    className="rounded-lg text-center mb-1 p-2 placeholder:text-center outline-0 focus:scale-105 transition"
+                    placeholder="PLAYER_NAME"
+                />
+                <input
+                    type="text"
+                    className="rounded-lg text-center p-2 placeholder:text-center outline-0 focus:scale-105 transition"
                     placeholder="JOIN_LOBBY_CODE"
                 />
-
                 <Link to={"/"}>
                     <button
                         className="bg-[#917FB3] font-bold text-[#FDE2F3] w-[195px] p-1 m-2 rounded-lg hover:bg-[#E5BEEC] hover:text-black transition">

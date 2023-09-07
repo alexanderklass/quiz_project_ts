@@ -53,6 +53,7 @@ const QuestionMaker = () => {
                 />
             ) : <>
                 <div className="flex items-center gap-2 justify-center">
+                    <input type={"checkbox"}/>
                     <input
                         name={"answer_one"}
                         value={answer_1}
@@ -64,6 +65,7 @@ const QuestionMaker = () => {
                         className="rounded p-3 text-center focus:scale-105 transition outline-0"
                         placeholder="ANSWER_OPTION"
                     />
+                    <input type={"checkbox"}/>
                     <input
                         name={"answer_two"}
                         value={answer_2}
@@ -77,6 +79,7 @@ const QuestionMaker = () => {
                     />
                 </div>
                 <div className="flex items-center gap-2 justify-center">
+                    <input type={"checkbox"}/>
                     <input
                         name={"answer_three"}
                         value={answer_3}
@@ -88,6 +91,7 @@ const QuestionMaker = () => {
                         className="rounded p-3 text-center focus:scale-105 transition outline-0"
                         placeholder="ANSWER_OPTION"
                     />
+                    <input type={"checkbox"}/>
                     <input
                         name={"answer_four"}
                         value={answer_4}

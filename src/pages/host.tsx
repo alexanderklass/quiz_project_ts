@@ -34,21 +34,27 @@ const Host = () => {
     };
 
     const createQuestion = (): void => {
-        let object;
         if (question === "" || questionContainer.length === 10) return;
-        if (guessQuestionToggle) {
-            object = {
-                question: question,
-                guessAnswer: guessAnswer,
-            };
-        } else {
-            object = {
-                question: question,
-                answer_1: answer_1,
-                answer_2: answer_2,
-                answer_3: answer_3,
-                answer_4: answer_4
-            };
+        const object = {
+            question: question,
+            guessQuestionToggled: guessQuestionToggle,
+            guessAnswer: guessAnswer,
+            answer_1: {
+                answer: answer_1,
+                correct: false
+            },
+            answer_2: {
+                answer: answer_2,
+                correct: false
+            },
+            answer_3: {
+                answer: answer_3,
+                correct: false
+            },
+            answer_4: {
+                answer: answer_4,
+                correct: false
+            }
         }
         setQuestionContainer([...questionContainer, object]);
         resetInputs();
