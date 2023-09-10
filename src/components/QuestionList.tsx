@@ -38,7 +38,7 @@ const QuestionList = () => {
                     </div>
                     <div className={"flex flex-row justify-center items-center gap-2"}>
                         <p className={"bg-white rounded p-2 text-center w-[200px] cursor-pointer hover:bg-green-500 transition "}>
-                            {question.answer_1.answer}
+                            {question.answer_1.answer} {question.answer_1.correct.toString()}
                         </p>
                         <p className={"bg-white rounded p-2 text-center w-[200px] cursor-pointer hover:bg-green-500 transition "}>
                             {question.answer_2.answer}

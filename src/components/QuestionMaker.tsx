@@ -36,7 +36,7 @@ const QuestionMaker = () => {
             guessAnswer: guessAnswerValue,
             answer_1: {
                 answer: answer1Value,
-                correct: false
+                correct: correctAnswerToggle,
             },
             answer_2: {
                 answer: answer2Value,
@@ -96,7 +96,6 @@ const QuestionMaker = () => {
                     <input onChange={(event) => {
                         const newValue = event.target.checked;
                         setCorrectAnswerToggle(newValue);
-                        console.log(newValue);
                     }} checked={correctAnswerToggle} type={"checkbox"}/>
                     <input
                         name={"answer_1"}
