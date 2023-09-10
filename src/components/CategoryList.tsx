@@ -1,5 +1,5 @@
 import test_data from "../TEST_DATA.json"
-import {questionStore} from "../store/questions.store.tsx";
+import {questionStore} from "../store/global.store.tsx";
 
 const CategoryList = () => {
     interface Category {
@@ -11,7 +11,7 @@ const CategoryList = () => {
     const {setQuestionContainer} = questionStore();
 
     const testCreateCategory = (): void => {
-        const DataArray = [...test_data.results];
+        const DataArray:any = [...test_data.results];
         setQuestionContainer(DataArray);
     }
 

@@ -1,66 +1,13 @@
 import Logo from "../assets//logo.png";
-import {Link} from "react-router-dom";
 import MediaShow from "../components/MediaShow.tsx";
 import CategoryList from "../components/CategoryList.tsx";
 import QuestionMaker from "../components/QuestionMaker.tsx";
-import {questionStore} from "../store/questions.store.tsx";
+import {questionStore} from "../store/global.store.tsx";
 
 const Host = () => {
     const {
         questionContainer,
-        guessQuestionToggle,
-        question,
-        answer_1,
-        answer_2,
-        answer_3,
-        answer_4,
-        guessAnswer,
-        correctAnswer_1,
-        setQuestionContainer,
-        setQuestion,
-        setAnswer_1,
-        setAnswer_2,
-        setAnswer_3,
-        setAnswer_4,
-        setGuessAnswer,
     } = questionStore();
-
-    const resetInputs = (): void => {
-        setQuestion("");
-        setGuessAnswer("");
-        setAnswer_1("");
-        setAnswer_2("");
-        setAnswer_3("");
-        setAnswer_4("");
-    };
-
-    const createQuestion = (): void => {
-        if (question === "" || questionContainer.length === 10) return;
-        const object = {
-            question: question,
-            guessQuestionToggled: guessQuestionToggle,
-            guessAnswer: guessAnswer,
-            answer_1: {
-                answer: answer_1,
-                correct: correctAnswer_1
-            },
-            answer_2: {
-                answer: answer_2,
-                correct: false
-            },
-            answer_3: {
-                answer: answer_3,
-                correct: false
-            },
-            answer_4: {
-                answer: answer_4,
-                correct: false
-            }
-        }
-        setQuestionContainer([...questionContainer, object]);
-        console.log(questionContainer);
-        resetInputs();
-    };
 
     return <div className="justify-center items-center flex flex-col h-screen">
         <div className="relative bg-[#2A2F4F] rounded-lg">
@@ -95,19 +42,6 @@ const Host = () => {
                         <p className="text-white text-lg font-bold">
                             {questionContainer.length}/10 Questions
                         </p>
-                    </div>
-                    <div className="m-2">
-                        <button
-                            onClick={createQuestion}
-                            className="bg-[#917FB3] font-bold text-[#FDE2F3] p-2 rounded hover:bg-[#E5BEEC] hover:text-black transition">
-                            CREATE_QUESTION
-                        </button>
-                        <Link to={"/game"}>
-                            <button
-                                className="bg-[#917FB3] font-bold text-[#FDE2F3] p-2 mx-2 rounded hover:bg-[#E5BEEC] hover:text-black transition">
-                                START_GAME
-                            </button>
-                        </Link>
                     </div>
                 </div>
             </section>

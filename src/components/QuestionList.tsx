@@ -1,8 +1,8 @@
-import {questionStore} from "../store/questions.store.tsx";
+import {questionStore} from "../store/global.store.tsx";
 import {useState} from "react";
 
 const QuestionList = () => {
-    const {questionContainer, setGuessAnswer} = questionStore();
+    const {questionContainer} = questionStore();
     const [containerIndex, setContainerIndex] = useState<number>(0);
     const handleNextQuestion = (): void => {
         if (containerIndex >= questionContainer.length - 1) {
@@ -23,14 +23,14 @@ const QuestionList = () => {
     const renderQuestions = () => {
         const question: any = questionContainer[containerIndex];
         if (!question) return null;
-        if (!question.guessQuestionToggled) {
-            return (<>
-                <div
-                    className="border-2 relative flex justify-center items-center border-dashed rounded mb-2 w-[500px] h-[300px] bg-[#917FB3]">
-                    IMAGE/SOUND
-                </div>
-                <p className={"p-1 bg-white rounded"}>{containerIndex + 1}/{questionContainer.length}</p>
-                <div className={"m-1 p-1 rounded flex flex-col gap-2 justify-center items-start"}>
+        return (<>
+            <div
+                className="border-2 relative flex justify-center items-center border-dashed rounded mb-2 w-[500px] h-[300px] bg-[#917FB3]">
+                IMAGE/SOUND
+            </div>
+            <p className={"p-1 bg-white rounded"}>{containerIndex + 1}/{questionContainer.length}</p>
+            <div className={"m-1 p-1 rounded flex flex-col gap-2 justify-center items-start"}>
+                {!question.guessQuestionToggled ? <>
                     <div className={"flex justify-center items-center"}>
                         <p className={"bg-purple-300 font-bold text-center rounded p-2 w-[408px]"}>
                             {question.question}
@@ -52,16 +52,7 @@ const QuestionList = () => {
                             {question.answer_4.answer}
                         </p>
                     </div>
-                </div>
-            </>)
-        } else {
-            return (<>
-                <div
-                    className="border-2 relative flex justify-center items-center border-dashed rounded mb-2 w-[500px] h-[300px] bg-[#917FB3]">
-                    IMAGE/SOUND
-                </div>
-                <p className={"p-1 bg-white rounded"}>{containerIndex + 1}/{questionContainer.length}</p>
-                <div className={"m-1 p-1 rounded flex flex-col gap-2 justify-center items-start"}>
+                </> : <>
                     <div className={"flex justify-center items-center"}>
                         <p className={"bg-purple-300 font-bold text-center rounded p-2 w-[408px]"}>
                             {question.question}
@@ -70,12 +61,12 @@ const QuestionList = () => {
                     <div className={"flex flex-row justify-center items-center gap-2"}>
                         <input className={"rounded w-[408px] p-2 text-center outline-0"}
                                placeholder={"GUESS_INPUT"}
-                               type={"text"}
-                               onChange={e => setGuessAnswer(e.target.value)}/>
+                               name="guessAnswer"
+                               type={"text"}/>
                     </div>
-                </div>
-            </>)
-        }
+                </>}
+            </div>
+        </>)
     };
 
     return (<>

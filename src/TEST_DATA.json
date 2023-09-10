@@ -25,97 +25,81 @@
       "category": "General Knowledge",
       "type": "multiple",
       "difficulty": "easy",
-      "question": "What is the name of the Jewish New Year?",
-      "correct_answer": "Rosh Hashanah",
-      "incorrect_answers": [
-        "Elul",
-        "New Year",
-        "Succoss"
-      ]
+      "question": "What is the shape of the toy invented by Hungarian professor Ern\u0151 Rubik?",
+      "answer_1": "Cube",
+      "answer_2":"Sphere",
+      "answer_3":"Cylinder",
+      "answer_4":"Pyramid"
     },
     {
       "category": "General Knowledge",
       "type": "multiple",
       "difficulty": "easy",
-      "question": "What is the name of Poland in Polish?",
-      "correct_answer": "Polska",
-      "incorrect_answers": [
-        "Pupcia",
-        "Polszka",
-        "P&oacute;land"
-      ]
+      "question": "What is the shape of the toy invented by Hungarian professor Ern\u0151 Rubik?",
+      "answer_1": "Cube",
+      "answer_2":"Sphere",
+      "answer_3":"Cylinder",
+      "answer_4":"Pyramid"
     },
     {
       "category": "General Knowledge",
       "type": "multiple",
       "difficulty": "easy",
-      "question": "The likeness of which president is featured on the rare $2 bill of USA currency?",
-      "correct_answer": "Thomas Jefferson",
-      "incorrect_answers": [
-        "Martin Van Buren",
-        "Ulysses Grant",
-        "John Quincy Adams"
-      ]
+      "question": "What is the shape of the toy invented by Hungarian professor Ern\u0151 Rubik?",
+      "answer_1": "Cube",
+      "answer_2":"Sphere",
+      "answer_3":"Cylinder",
+      "answer_4":"Pyramid"
     },
     {
       "category": "General Knowledge",
       "type": "multiple",
       "difficulty": "easy",
-      "question": "What is Cynophobia the fear of?",
-      "correct_answer": "Dogs",
-      "incorrect_answers": [
-        "Birds",
-        "Flying",
-        "Germs"
-      ]
+      "question": "What is the shape of the toy invented by Hungarian professor Ern\u0151 Rubik?",
+      "answer_1": "Cube",
+      "answer_2":"Sphere",
+      "answer_3":"Cylinder",
+      "answer_4":"Pyramid"
     },
     {
       "category": "General Knowledge",
       "type": "multiple",
       "difficulty": "easy",
-      "question": "The Flag of the European Union has how many stars on it?",
-      "correct_answer": "12",
-      "incorrect_answers": [
-        "10",
-        "14",
-        "16"
-      ]
+      "question": "What is the shape of the toy invented by Hungarian professor Ern\u0151 Rubik?",
+      "answer_1": "Cube",
+      "answer_2":"Sphere",
+      "answer_3":"Cylinder",
+      "answer_4":"Pyramid"
     },
     {
       "category": "General Knowledge",
       "type": "multiple",
       "difficulty": "easy",
-      "question": "Earth is located in which galaxy?",
-      "correct_answer": "The Milky Way Galaxy",
-      "incorrect_answers": [
-        "The Mars Galaxy",
-        "The Galaxy Note",
-        "The Black Hole"
-      ]
+      "question": "What is the shape of the toy invented by Hungarian professor Ern\u0151 Rubik?",
+      "answer_1": "Cube",
+      "answer_2":"Sphere",
+      "answer_3":"Cylinder",
+      "answer_4":"Pyramid"
     },
     {
       "category": "General Knowledge",
       "type": "multiple",
       "difficulty": "easy",
-      "question": "What is the profession of Elon Musk&#039;s mom, Maye Musk?",
-      "correct_answer": "Model",
-      "incorrect_answers": [
-        "Professor",
-        "Biologist",
-        "Musician"
-      ]
+      "question": "What is the shape of the toy invented by Hungarian professor Ern\u0151 Rubik?",
+      "answer_1": "Cube",
+      "answer_2":"Sphere",
+      "answer_3":"Cylinder",
+      "answer_4":"Pyramid"
     },
     {
       "category": "General Knowledge",
       "type": "multiple",
       "difficulty": "easy",
-      "question": "What is the official language of Brazil?",
-      "correct_answer": "Portugese",
-      "incorrect_answers": [
-        "Brazilian",
-        "Spanish",
-        "English"
-      ]
+      "question": "What is the shape of the toy invented by Hungarian professor Ern\u0151 Rubik?",
+      "answer_1": "Cube",
+      "answer_2":"Sphere",
+      "answer_3":"Cylinder",
+      "answer_4":"Pyramid"
     }
   ]
 }
