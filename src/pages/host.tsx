@@ -39,7 +39,7 @@ const Host = () => {
                 </div>
                 <div className="flex flex-col justify-center items-center">
                     <div className="flex justify-center items-center">
-                        <p className="text-white text-lg font-bold">
+                        <p className="text-white text-lg font-bold mr-3">
                             {questionContainer.length}/10 Questions
                         </p>
                     </div>

@@ -20,6 +20,10 @@ const QuestionList = () => {
         }
     }
 
+    const checkCorrectAnswer = (selectedAnswer: any): void => {
+        selectedAnswer.correct ? console.log("correct") : console.log("false");
+    }
+
     const renderQuestions = () => {
         const question: any = questionContainer[containerIndex];
         if (!question) return null;
@@ -30,41 +34,50 @@ const QuestionList = () => {
             </div>
             <p className={"p-1 bg-white rounded"}>{containerIndex + 1}/{questionContainer.length}</p>
             <div className={"m-1 p-1 rounded flex flex-col gap-2 justify-center items-start"}>
-                {!question.guessQuestionToggled ? <>
-                    <div className={"flex justify-center items-center"}>
-                        <p className={"bg-purple-300 font-bold text-center rounded p-2 w-[408px]"}>
-                            {question.question}
-                        </p>
-                    </div>
-                    <div className={"flex flex-row justify-center items-center gap-2"}>
-                        <p className={"bg-white rounded p-2 text-center w-[200px] cursor-pointer hover:bg-green-500 transition "}>
-                            {question.answer_1.answer} {question.answer_1.correct.toString()}
-                        </p>
-                        <p className={"bg-white rounded p-2 text-center w-[200px] cursor-pointer hover:bg-green-500 transition "}>
-                            {question.answer_2.answer}
-                        </p>
-                    </div>
-                    <div className={"flex flex-row justify-center items-center gap-2"}>
-                        <p className={"cursor-pointer hover:bg-green-500 transition bg-white rounded p-2 text-center w-[200px]"}>
-                            {question.answer_3.answer}
-                        </p>
-                        <p className={"bg-white rounded p-2 text-center w-[200px] cursor-pointer hover:bg-green-500 transition "}>
-                            {question.answer_4.answer}
-                        </p>
-                    </div>
-                </> : <>
-                    <div className={"flex justify-center items-center"}>
-                        <p className={"bg-purple-300 font-bold text-center rounded p-2 w-[408px]"}>
-                            {question.question}
-                        </p>
-                    </div>
-                    <div className={"flex flex-row justify-center items-center gap-2"}>
-                        <input className={"rounded w-[408px] p-2 text-center outline-0"}
-                               placeholder={"GUESS_INPUT"}
-                               name="guessAnswer"
-                               type={"text"}/>
-                    </div>
-                </>}
+                {!question.guessQuestionToggled ?
+                    <>
+                        <div className={"flex justify-center items-center"}>
+                            <p className={"bg-purple-300 font-bold text-center rounded p-2 w-[408px]"}>
+                                {question.question}
+                            </p>
+                        </div>
+                        <div className={"flex flex-row justify-center items-center gap-2"}>
+                            <p onClick={() => checkCorrectAnswer(question.answer_1)}
+                               className={"bg-white rounded p-2 text-center w-[200px] cursor-pointer hover:bg-green-500 transition "}>
+                                {question.answer_1.answer} {question.answer_1.correct.toString()}
+                            </p>
+                            <p onClick={() => checkCorrectAnswer(question.answer_2)}
+                               className={"bg-white rounded p-2 text-center w-[200px] cursor-pointer hover:bg-green-500 transition "}>
+                                {question.answer_2.answer} {question.answer_2.correct.toString()}
+                            </p>
+                        </div>
+                        <div className={"flex flex-row justify-center items-center gap-2"}>
+                            <p onClick={() => checkCorrectAnswer(question.answer_3)}
+                               className={"cursor-pointer hover:bg-green-500 transition bg-white rounded p-2 text-center w-[200px]"}>
+                                {question.answer_3.answer} {question.answer_3.correct.toString()}
+                            </p>
+                            <p onClick={() => checkCorrectAnswer(question.answer_4)}
+                               className={"bg-white rounded p-2 text-center w-[200px] cursor-pointer hover:bg-green-500 transition "}>
+                                {question.answer_4.answer} {question.answer_4.correct.toString()}
+                            </p>
+                        </div>
+                    </> :
+                    <>
+                        <div className={"flex justify-center items-center"}>
+                            <p className={"bg-purple-300 font-bold text-center rounded p-2 w-[408px]"}>
+                                {question.question}
+                            </p>
+                        </div>
+                        <div className={"flex flex-col justify-center items-center gap-2"}>
+                            <input className={"rounded w-[408px] p-2 text-center outline-0"}
+                                   placeholder={"GUESS_INPUT"}
+                                   name="guessAnswer"
+                                   type={"text"}/>
+                            <button
+                                className={"bg-green-500 hover:bg-white hover:text-black transition hover:scale-x-105 w-[265px] rounded p-1"}>SUBMIT
+                            </button>
+                        </div>
+                    </>}
             </div>
         </>)
     };
