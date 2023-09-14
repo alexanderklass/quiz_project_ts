@@ -1,6 +1,6 @@
 import {useState} from "react";
 import {questionStore} from "../store/global.store.tsx";
-import {Link} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 const QuestionMaker = () => {
     const {
@@ -10,6 +10,7 @@ const QuestionMaker = () => {
         setGuessQuestionToggle,
 
     } = questionStore();
+    const navigate = useNavigate();
     const [questionValue, setQuestionValue] = useState<string | number>();
     const [guessAnswerValue, setGuessAnswerValue] = useState<string | number>();
 
@@ -60,7 +61,6 @@ const QuestionMaker = () => {
             }
         }
         setQuestionContainer([...questionContainer, newQuestion]);
-        console.log(questionContainer);
         resetValues();
     };
 
@@ -68,11 +68,17 @@ const QuestionMaker = () => {
         setGuessQuestionToggle(!guessQuestionToggle);
     }
 
+    const startGame = () => {
+        if (questionContainer.length === 0) return;
+        navigate("/game");
+    }
+
     return (
         <div className="flex flex-col mt-1 gap-2 justify-center items-center">
             <div className={"flex flex-row gap-1"}>
                 <label className={"text-white flex justify-center items-center"}>
                     <input onChange={onChangeGuessQuestion}
+                           checked={guessQuestionToggle}
                            className={"w-6 h-6 mr-1"} type={"checkbox"}/>
                     Guess Question
                 </label>
@@ -182,12 +188,11 @@ const QuestionMaker = () => {
                     className="bg-[#917FB3] font-bold text-[#FDE2F3] p-2 rounded hover:bg-[#E5BEEC] hover:text-black transition">
                     CREATE_QUESTION
                 </button>
-                <Link to={"/game"}>
-                    <button
-                        className="bg-[#917FB3] font-bold text-[#FDE2F3] p-2 mx-2 rounded hover:bg-[#E5BEEC] hover:text-black transition">
-                        START_GAME
-                    </button>
-                </Link>
+                <button
+                    onClick={startGame}
+                    className="bg-[#917FB3] font-bold text-[#FDE2F3] p-2 mx-2 rounded hover:bg-[#E5BEEC] hover:text-black transition">
+                    START_GAME
+                </button>
             </div>
         </div>
     );

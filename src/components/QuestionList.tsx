@@ -1,8 +1,10 @@
 import {questionStore} from "../store/global.store.tsx";
+import {playerStore} from "../store/player.store.tsx";
 import {useState} from "react";
 
 const QuestionList = () => {
     const {questionContainer} = questionStore();
+    const {playerContainer, setPlayerContainer} = playerStore();
     const [containerIndex, setContainerIndex] = useState<number>(0);
     const handleNextQuestion = (): void => {
         if (containerIndex >= questionContainer.length - 1) {
@@ -10,7 +12,7 @@ const QuestionList = () => {
         } else {
             setContainerIndex(containerIndex + 1);
         }
-    }
+    };
 
     const handlePrevQuestion = (): void => {
         if (containerIndex <= 0) {
@@ -18,11 +20,20 @@ const QuestionList = () => {
         } else {
             setContainerIndex(containerIndex - 1);
         }
-    }
+    };
 
     const checkCorrectAnswer = (selectedAnswer: any): void => {
-        selectedAnswer.correct ? console.log("correct") : console.log("false");
-    }
+        const updatedPlayerContainer = [...playerContainer];
+        const player = updatedPlayerContainer[1];
+        if (selectedAnswer.correct) {
+            player.score = player.score + 5;
+
+        } else {
+            player.score = player.score - 5;
+        }
+        updatedPlayerContainer[1] = player;
+        setPlayerContainer(updatedPlayerContainer);
+    };
 
     const renderQuestions = () => {
         const question: any = questionContainer[containerIndex];

@@ -1,13 +1,15 @@
-import {Link} from "react-router-dom";
 import logo from "../assets/logo.png";
+import {Link} from "react-router-dom";
 import {playerStore} from "../store/player.store.tsx";
+import {questionStore} from "../store/global.store.tsx";
 import {useNavigate} from "react-router-dom";
 
 function Start() {
+    const {questionContainer} = questionStore();
     const {setPlayerName, playerName, playerContainer, setPlayerContainer} = playerStore();
     const navigate = useNavigate();
     const addPlayer = () => {
-        if (playerName == "" || playerContainer.length === 10) return;
+        if (playerName == "" || playerContainer.length === 10 || questionContainer.length === 0) return;
         const newPlayer: any = {
             playerName: playerName,
             score: 0,
