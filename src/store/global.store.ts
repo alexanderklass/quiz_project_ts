@@ -1,26 +1,10 @@
 import {create} from 'zustand';
 
-
 export interface IQuestionContainer {
     question: string | number;
     guessQuestionToggled: boolean;
     guessAnswer: string | number;
-    answer_1: {
-        answer: string | number;
-        correct: boolean;
-    };
-    answer_2: {
-        answer: string | number;
-        correct: boolean;
-    };
-    answer_3: {
-        answer: string | number;
-        correct: boolean;
-    };
-    answer_4: {
-        answer: string | number;
-        correct: boolean;
-    };
+    answers: [object]
 }
 
 export interface IQuestions {
@@ -40,7 +24,7 @@ export const questionStore = create<IQuestions>((set) => ({
     image: null,
     audio: null,
     setGuessQuestionToggle: (toggle: boolean) => set({guessQuestionToggle: toggle}),
-    setQuestionContainer: (questionContainer: IQuestionContainer[]) => set({questionContainer:questionContainer}),
+    setQuestionContainer: (questionContainer: IQuestionContainer[]) => set({questionContainer: questionContainer}),
     setImage: (img: string | null) => set({image: img}),
     setAudio: (aud: string | null) => set({audio: aud}),
 }));

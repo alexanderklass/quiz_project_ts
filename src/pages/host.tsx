@@ -2,14 +2,14 @@ import Logo from "../assets//logo.png";
 import MediaShow from "../components/MediaShow.tsx";
 import CategoryList from "../components/CategoryList.tsx";
 import QuestionMaker from "../components/QuestionMaker.tsx";
-import {questionStore} from "../store/global.store.tsx";
+import {questionStore} from "../store/global.store.ts";
+import {socketStore} from "../store/socket.store.ts";
 
 const Host = () => {
-    const {
-        questionContainer,
-    } = questionStore();
+    const {questionContainer,} = questionStore();
+    const {lobbyCode} = socketStore();
 
-    return <div className="justify-center items-center flex flex-col h-screen">
+    return (<div className="justify-center items-center flex flex-col h-screen">
         <div className="relative bg-[#2A2F4F] rounded-lg">
             <div className="flex-row flex justify-center w-[1400px] h-[800px] items-center">
                 <CategoryList/>
@@ -27,10 +27,12 @@ const Host = () => {
             <section className="flex flex-row justify-between items-center">
                 <div className="flex flex-col items-center justify-center">
                     <input
+                        name="lobbyCode"
                         type="text"
                         className="rounded text-center p-1 outline-0 w-[100px]"
                         placeholder="LOBBY_CODE"
                         readOnly
+                        value={lobbyCode}
                     />
                     <button
                         className="bg-[#917FB3] font-bold text-[#FDE2F3] w-[100px] p-1 m-2 rounded hover:bg-[#E5BEEC] hover:text-black transition">
@@ -46,7 +48,7 @@ const Host = () => {
                 </div>
             </section>
         </div>
-    </div>;
+    </div>)
 };
 
 export default Host;

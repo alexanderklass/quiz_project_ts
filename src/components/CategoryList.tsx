@@ -1,5 +1,5 @@
 import test_data from "../TEST_DATA.json"
-import {questionStore} from "../store/global.store.tsx";
+import {questionStore} from "../store/global.store.ts";
 
 const CategoryList = () => {
     interface Category {

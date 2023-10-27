@@ -1,6 +1,7 @@
 import {useState} from "react";
-import {questionStore} from "../store/global.store.tsx";
+import {questionStore} from "../store/global.store.ts";
 import {useNavigate} from "react-router-dom";
+import {socketStore} from "../store/socket.store.ts";
 
 const QuestionMaker = () => {
     const {
@@ -10,6 +11,7 @@ const QuestionMaker = () => {
         setGuessQuestionToggle,
 
     } = questionStore();
+    const {lobbyCode} = socketStore()
     const navigate = useNavigate();
     const [questionValue, setQuestionValue] = useState<string | number>();
     const [guessAnswerValue, setGuessAnswerValue] = useState<string | number>();
@@ -43,22 +45,12 @@ const QuestionMaker = () => {
             question: questionValue,
             guessQuestionToggled: guessQuestionToggle,
             guessAnswer: guessAnswerValue,
-            answer_1: {
-                answer: answer1Value,
-                correct: correctAnswer1Toggle,
-            },
-            answer_2: {
-                answer: answer2Value,
-                correct: correctAnswer2Toggle
-            },
-            answer_3: {
-                answer: answer3Value,
-                correct: correctAnswer3Toggle
-            },
-            answer_4: {
-                answer: answer4Value,
-                correct: correctAnswer4Toggle
-            }
+            answers: [
+                {answer: answer1Value, correct: correctAnswer1Toggle},
+                {answer: answer2Value, correct: correctAnswer2Toggle},
+                {answer: answer3Value, correct: correctAnswer3Toggle},
+                {answer: answer4Value, correct: correctAnswer4Toggle},
+            ]
         }
         setQuestionContainer([...questionContainer, newQuestion]);
         resetValues();
@@ -70,7 +62,7 @@ const QuestionMaker = () => {
 
     const startGame = () => {
         if (questionContainer.length === 0) return;
-        navigate("/game");
+        navigate(`/game/${lobbyCode}`);
     }
 
     return (

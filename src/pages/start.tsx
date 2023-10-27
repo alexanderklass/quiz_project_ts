@@ -1,21 +1,47 @@
 import logo from "../assets/logo.png";
-import {Link} from "react-router-dom";
-import {playerStore} from "../store/player.store.tsx";
-import {questionStore} from "../store/global.store.tsx";
 import {useNavigate} from "react-router-dom";
+import {playerStore, IPlayerContainer} from "../store/player.store.ts";
+import {socketStore} from "../store/socket.store.ts";
+import {useEffect} from "react";
+import {v4} from 'uuid';
+import socket from "../modules/socket.ts";
 
 function Start() {
-    const {questionContainer} = questionStore();
-    const {setPlayerName, playerName, playerContainer, setPlayerContainer} = playerStore();
+    const {setLobbyCode, lobbyCode} = socketStore();
+    const {setPlayerName, playerName, addPlayer, players} = playerStore();
     const navigate = useNavigate();
-    const addPlayer = () => {
-        if (playerName == "" || playerContainer.length === 10 || questionContainer.length === 0) return;
-        const newPlayer: any = {
-            playerName: playerName,
-            score: 0,
-        }
-        setPlayerContainer([...playerContainer, newPlayer]);
-        navigate("/game");
+
+    useEffect(() => {
+        socket.on("connect", (): void => {
+            console.log("connected to server");
+        });
+
+        socket.on("receivePlayer", (newPlayer: IPlayerContainer): void => {
+            if (newPlayer) {
+                addPlayer(newPlayer);
+                console.log("received");
+            } else {
+                console.log("not received");
+            }
+        });
+    })
+
+    const joinLobby = (): void => {
+        if (playerName === "" || players.length === 10) return;
+        const newPlayer = {playerName: playerName, score: 0, room: lobbyCode};
+        socket.emit("addPlayer", newPlayer);
+        addPlayer(newPlayer);
+        navigate(`/game/${lobbyCode}`);
+    };
+
+    const createLobby = (): void => {
+        if (playerName === "") return;
+        const generatedCode = v4().slice(0, 5).toUpperCase();
+        const newPlayer = {playerName: playerName, score: 0, room: generatedCode};
+        socket.emit("addPlayer", newPlayer);
+        addPlayer(newPlayer);
+        setLobbyCode(generatedCode);
+        navigate(`/host/${generatedCode}`);
     };
 
     return (
@@ -30,21 +56,21 @@ function Start() {
                 />
                 <input
                     type="text"
+                    onChange={e => setLobbyCode(e.target.value)}
                     className="rounded-lg text-center p-2 placeholder:text-center outline-0 focus:scale-105 transition"
                     placeholder="JOIN_LOBBY_CODE"
                 />
                 <button
                     className="bg-[#917FB3] font-bold text-[#FDE2F3] w-[195px] p-1 m-2 rounded-lg hover:bg-[#E5BEEC] hover:text-black transition"
-                    onClick={addPlayer}>
+                    onClick={joinLobby}>
                     JOIN_LOBBY
                 </button>
 
-                <Link to={"/host"}>
-                    <button
-                        className="bg-[#917FB3] font-bold text-[#FDE2F3] p-1 rounded-lg w-[195px] hover:bg-[#E5BEEC] hover:text-black transition">
-                        CREATE_LOBBY
-                    </button>
-                </Link>
+                <button
+                    onClick={createLobby}
+                    className="bg-[#917FB3] font-bold text-[#FDE2F3] p-1 rounded-lg w-[195px] hover:bg-[#E5BEEC] hover:text-black transition">
+                    CREATE_LOBBY
+                </button>
             </div>
         </div>
     );

@@ -1,7 +1,7 @@
 import React from 'react';
 import {AiFillDelete, AiFillPicture} from "react-icons/ai";
 import {BsSoundwave} from "react-icons/bs";
-import {questionStore} from "../store/global.store.tsx";
+import {questionStore} from "../store/global.store.ts";
 
 const MediaShow = () => {
     const {setImage, setAudio, audio, image} = questionStore();
